@@ -1,12 +1,12 @@
 all: main
 
-main: main.o hello.o
+main: main.o hello.o carre.o
 		gcc main.o hello.o -o main
 
 hello.o: hello.c hello.h
 		gcc -c hello.c -o hello.o
 
-main.o: main.c hello.h
+main.o: main.c hello.h carre.h
 		gcc -c main.c -o main.o
 
 clean:

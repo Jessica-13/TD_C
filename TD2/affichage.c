@@ -6,7 +6,7 @@ int main()
     int carre;
     int i;
     printf("Entrez un entier qui represente le nombre de carrés à calculer. i = ");
-    scanf("%d",&i);
+    scanf("%d",&i); //input
     printf("i = %d\n",i);
 
     printf("Les carrés des %d premiers entiers : \n", i);

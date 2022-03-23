@@ -13,8 +13,8 @@ main.o:	main.c matrice.h
 	gcc ${CFLAGS} -c main.c -o main.o
 
 
-main: main.o matProd.o utilMatrice.o
-	gcc ${LDFLAGS} main.o matProd.o utilMatrice.o -o main
+main: main.o matProd.o utilMatrice.o matEqualQ.o
+	gcc ${LDFLAGS} main.o matProd.o utilMatrice.o matEqualQ.o -o main
 
 mainSol: main.o matProdSol.o utilMatrice.o
 	gcc ${LDFLAGS} main.o matProdSol.o utilMatrice.o -o main
