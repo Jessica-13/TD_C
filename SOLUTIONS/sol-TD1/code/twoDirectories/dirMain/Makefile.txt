@@ -1,0 +1,10 @@
+all: main
+
+main: main.o
+       gcc -Wall  -L../dirHello/ main.o -o main -lhello
+
+main.o: main.c
+       gcc -Wall -I ../dirHello main.c -c -o main.o
+
+clean:
+       rm -f main *~
