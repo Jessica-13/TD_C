@@ -16,7 +16,26 @@
 **************************************************/    
 LISTE insertionListeTriee(LISTE liste1, int val)
 {
-  return (LISTE)NULL;
+  LISTE newListe;
+  if( liste1 == NULL )
+  {
+    newListe = (LISTE)malloc(sizeof(ELEMLISTE));
+    newListe -> elem = val;
+    newListe -> suivant = NULL;
+    return newListe;
+  }
+  else if(val < liste1 -> elem)
+  {
+    newListe = (LISTE)malloc(sizeof(ELEMLISTE));
+    newListe -> elem = val;
+    newListe -> suivant = liste1;
+    return newListe;
+  }
+  else
+  {
+    liste1 -> suivant = insertionListeTriee(liste1 -> suivant, val);
+    return liste1;
+  }
 }
 
 /*!
@@ -30,6 +49,25 @@ LISTE insertionListeTriee(LISTE liste1, int val)
 **************************************************/    
 void insertionListeTriee2 (LISTE *pliste, int val)	
 { 
+  LISTE newListe;
+  if( (*pliste) == NULL)
+  {
+    newListe = (LISTE)malloc(sizeof(ELEMLISTE));
+    newListe -> elem = val;
+    newListe -> suivant = NULL;
+    (*pliste) = newListe;
+  }
+  else if(val < (*pliste) -> elem)
+  {
+    newListe = (LISTE)malloc(sizeof(ELEMLISTE));
+    newListe -> elem = val;
+    newListe -> suivant = (*pliste);
+    (*pliste) = newListe;
+  }
+  else
+  {
+    insertionListeTriee2(&((*pliste) -> suivant), val);
+  }
   return;
 }
 
@@ -43,12 +81,12 @@ void afficherListe(LISTE liste)
   ELEMLISTE *visitor;
  
  visitor=liste;
- while(visitor!=0)
-   {
-     fprintf(stdout,"|%d|",visitor->elem);
-     visitor=visitor->suivant;
-   }
- fprintf(stdout,"|--\n");
+  while(visitor!=0)
+    {
+      fprintf(stdout,"|%d|",visitor->elem);
+      visitor=visitor->suivant;
+    }
+  fprintf(stdout,"|--\n");
 }	
 
 
@@ -84,6 +122,11 @@ void afficherListe(LISTE liste)
  fprintf(stdout,"liste2:");
  afficherListe(liste2);
  
+  
+  fprintf(stdout,"Test insertionListeTriee : \n");
+  int valeur = 3;
+  insertionListeTriee(liste1, valeur);
+  afficherListe(liste1);
 
 }
 
