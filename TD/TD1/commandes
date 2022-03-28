@@ -1,0 +1,89 @@
+TD 1 
+
+
+Compilez ce programme avec la commande :
+		gcc hello.c -o hello
+
+
+Vérifiez bien que vous avez un fichier exécutable hello qui a été créé en tapant :
+		file hello
+		
+Exécutez ce programme en tapant :
+		./hello
+
+Exécuter le Makefile : 		
+		make
+		
+
+all: hello # Lorsqu’on m’appelle (i.e. commande make), je dois réaliser la cible hello
+
+hello: hello.c # Pour réaliser la cible hello, je dois avoir la cible hello.c
+# gcc hello.c -o hello 
+		gcc -c hello.c -o hello.o
+		gcc hello.o -o hello
+# De plus (ligne 4), si cette cible hello.c est plus récente que le hello 
+# que j’ai, je dois exécuter la commande indiqué à la ligne suivante
+
+clean:
+		rm -f hello 
+		rm -f hello.o 
+# add (rm -f hello.o) 
+# Enfin, pour réaliser la cible clean
+
+
+# make -f monFich.mk
+
+
+
+Compilation en passant par un fichier objet -> puis exécutable : 
+		gcc -c hello.c -o hello.o
+		gcc hello.o -o hello
+
+
+# include <stdio.h>
+
+int main ()
+{
+    int year;
+
+    year = 2018;
+    printf("hello %d World\n",year);
+
+    return (0);
+}
+
+/* mon premier commentaire C */
+
+
+
+- la librairie C (libc) qui permet de faire les opérations élémentaires sur le système
+- la librairie d’entrées/sortie (libstdio) qui permet de faire des entrées/sortie dans les programmes
+
+* les fichiers .h : qui contiennent les en-têtes de fonction ainsi que les définitions de type
+
+
+
+
+all: main
+
+main: main.o pgcd.o
+		gcc main.o pgcd.o -o main
+
+pgcd.o: pgcd.c pgcd.h
+		gcc -c pgcd.c -o pgcd.o
+
+main.o: main.c pgcd.h
+		gcc -c main.c -o main.o
+
+clean:
+		rm -f main *.o
+		
+# ...............................................................................................
+Pour créer une bibliothèque libpgcd.a à partir du fichier pgcd.o: 
+		ar -crs libpgcd.a pgcd.où
+
+Pour utiliser la librairie libpgcd.a qui se trouve dans le répertoire
+../libpgcd/, lors de l’édition de lien du fichier main.o par exemple, on exécutera la commande :
+		gcc -Wall -L../libpgcd/ main.o -o main -lpgcd
+
+
