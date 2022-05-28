@@ -80,7 +80,7 @@ clean:
 		
 # ...............................................................................................
 Pour créer une bibliothèque libpgcd.a à partir du fichier pgcd.o: 
-		ar -crs libpgcd.a pgcd.où
+		ar -crs libpgcd.a pgcd.o
 
 Pour utiliser la librairie libpgcd.a qui se trouve dans le répertoire
 ../libpgcd/, lors de l’édition de lien du fichier main.o par exemple, on exécutera la commande :

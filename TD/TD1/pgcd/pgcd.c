@@ -6,7 +6,7 @@ int pgcd(int a, int b)
 {
     int res;
 
-    if (a>b)
+    if (a > b)
         if (a % b == 0)
             res = b;
         else
@@ -16,9 +16,7 @@ int pgcd(int a, int b)
             res = a;
         else
             res = pgcd(a, b%a);
-
     return res;
-
 }
 
 
